@@ -1,0 +1,24 @@
+﻿@model CampaignViewModel
+
+<section class="cards animate__animated animate__fadeIn">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Campaigns)
+            {
+                <div class="col-lg-4 col-md-12">
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/uploads/img/@item.Place.Image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">
+                                @Html.Raw(item.Content)
+                            </p>
+                            <h2 class="card-title">@item.Price AZN</h2>
+                            <a asp-action="detail" asp-controller="place" asp-route-id="@item.Place.Id" class="btn text-center" style="background-color: #009de0; color: white;">@item.Place.Name</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,58 @@
+﻿@model ContactViewModel
+@using neyeyim.Services;
+
+@inject LayoutViewModelService  service
+
+@{
+    Setting setting = service.GetSetting();
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 md-12 animate__animated animate__fadeInLeft">
+            <div class="card cardcontact">
+                <div class="card-body d-flex">
+                    <i class="conicon fas fa-phone-square"></i>
+                    <h3 class="elaqevasiteleri">@setting.ContactPhone</h3>
+                </div>
+            </div>
+            <div class="card cardcontact">
+                <div class="card-body d-flex">
+                    <i class="conicon fas fa-envelope-square"></i>
+                    <h3 class="elaqevasiteleri">@setting.InfoMail</h3>
+                </div>
+            </div>
+            <div class="contact-item cardcontact1">
+                <img src="https://menyum.az/assetsDesk/images/contact/icon-1.svg" alt="">
+                <h4 class="unvancap">Ünvan</h4>
+                <p class="unvan">@setting.Adress</p>
+                <p><i class="fa fa-clock-o pr-10"></i>@setting.WorkTime</p>
+            </div>
+        </div>
+
+        <div class="col-lg-4 md-12 animate__animated animate__fadeInLeft">
+            <div class="card cardcontact">
+                <div class="card-body d-flex">
+                    <i class="conicon fas fa-phone-square"></i>
+                    <h3 class="elaqevasiteleri">@setting.InfoPhone</h3>
+                </div>
+            </div>
+            <div class="card cardcontact">
+                <div class="card-body d-flex">
+                    <i class="conicon fas fa-envelope-square"></i>
+                    <h3 class="elaqevasiteleri">@setting.ContactMail</h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 animate__animated animate__fadeIn">
+            <a asp-action="index" asp-controller="campaign">
+                <div class="col-lg-12" style="height: 100%">
+                    <img class="promotion" src="uploads/img/promotion.jpg" alt=""
+                         style="width: 100%; position: sticky !important; top: 1px" />
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

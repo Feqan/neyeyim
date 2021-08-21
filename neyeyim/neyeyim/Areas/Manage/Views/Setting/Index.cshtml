@@ -1,0 +1,46 @@
+﻿@using neyeyim.Models;
+@model List<Setting>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+
+    int i = 0;
+}
+
+<div class="container-fluid">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-1">Əlaqə nöm</th>
+                <th class="col-md-1">Məlumat nöm</th>
+                <th class="col-md-2">Əlaqə mail</th>
+                <th class="col-md-2">Məlumat mail</th>
+                <th class="col-md-2">Ünvan</th>
+                <th class="col-md-2">İş saatı</th>
+                <th class="col-md-1"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+           @foreach (var item in Model)
+            {
+                i++;
+            <tr class="row">
+                <td class="col-md-1">@i</td>
+                <td class="col-md-1">@item.ContactPhone</td>
+                <td class="col-md-1">@item.InfoPhone</td>
+                <td class="col-md-2">@item.ContactMail</td>
+                <td class="col-md-2">@item.InfoMail</td>
+                <td class="col-md-2">@item.Adress</td>
+                <td class="col-md-2">@item.WorkTime</td>
+                <td class="col-md-1">
+                    <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Redaktə et</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

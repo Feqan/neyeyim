@@ -1,0 +1,39 @@
+﻿@model JobadViewModel
+
+<section class="workcard  animate__animated animate__fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach (var item in Model.Jobads)
+                    {
+                        <div class="col-lg-6">
+                            <a asp-action="detail" asp-controller="jobad" asp-route-id="@item.Id" style="text-decoration: none;">
+                                <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Position</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">@item.Salary AZN</h6>
+                                        <p class="card-text" style="color: black;">@item.Place.Name - @item.Category.Name</p>
+                                        <h6 class="card-subtitle mb-2 text-muted">Elanın bitmə tarixi: @item.Deadline.ToString("dd.MM.yyyy")</h6>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @foreach (var item in Model.Promotions)
+             {
+                <div class="col-lg-4">
+                    <a asp-action="index" asp-controller="campaign">
+                        <div class="col-lg-12" style="height: 100%">
+                            <img class="promotion" src="~/uploads/img/@item.Image" alt=""
+                                 style="width: 100%; position: sticky !important; top: 1px" />
+                        </div>
+                    </a>
+                </div>
+             }
+            </div>
+    </div>
+</section>

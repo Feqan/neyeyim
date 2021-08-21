@@ -1,0 +1,42 @@
+﻿@using neyeyim.Models;
+@model List<Info>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+
+    int selectedPage = (int)ViewBag.SelectedPage;
+    int totalPage = (int)ViewBag.TotalPageCount;
+
+    int i = ((int)ViewBag.SelectedPage - 1) * 3;
+}
+
+<div class="container-fluid">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-3">Komanda Haqqında</th>
+                <th class="col-md-3">Nə üçün istifadə olunur?</th>
+                <th class="col-md-3">Necə istifadə olunur?</th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+           @foreach (var item in Model)
+            {
+                i++;
+            <tr class="row">
+                <td class="col-md-1">@i</td>
+                <td class="col-md-3">@item.Team</td>
+                <td class="col-md-3">@item.WhatFor</td>
+                <td class="col-md-3">@item.HowUsed</td>
+                <td class="col-md-2">
+                    <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Redaktə et</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
