@@ -18,16 +18,16 @@ $(document).ready(function () {
     }
   });
 
+  $(".ldmr").slice(0, 3).show();
+  $(".btnldmr").on("click", function () {
+    $(".ldmr:hidden").slice(0, 3).slideDown();
+    if ($(".ldmr:hidden").length == 0) {
+      $(".btnldmr").fadeOut("slow");
+    }
+  });
+
   $(".rating__input").click(function () {
     var star = $(this);
     console.log(star.val());
   });
-
-  // Swal.fire({
-  //   position: "top-end",
-  //   icon: "success",
-  //   title: "Məhsul səbətə əlavə olundu!",
-  //   showConfirmButton: false,
-  //   timer: 800,
-  // });
 });

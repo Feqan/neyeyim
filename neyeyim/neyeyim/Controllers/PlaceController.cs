@@ -43,11 +43,11 @@ namespace neyeyim.Controllers
 
             if (DateTime.Now.Hour > placeDetailVM.Place.OpenTime.Hour && DateTime.Now.Hour < placeDetailVM.Place.CloseTime.Hour)
             {
-                placeDetailVM.Place.Status = "Açıqdır";
+                placeDetailVM.Place.Status = "Açıq";
             }
             else
             {
-                placeDetailVM.Place.Status = "Qapalıdır";
+                placeDetailVM.Place.Status = "Qapalı";
             }
 
             return View(placeDetailVM);
@@ -111,6 +111,7 @@ namespace neyeyim.Controllers
             return RedirectToAction("detail", new { id = number });
         }
 
+        [Authorize(Roles = "Member")]
         public IActionResult AddBasket(int id)
         {
             //HttpContext.Session.SetString("foodName", "Burger");
