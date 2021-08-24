@@ -25,6 +25,8 @@
     <Compile Remove="Migrations\20210727132140_SomeColumnChaged.Designer.cs" />
     <Compile Remove="Migrations\20210727132927_SomeCoumnsd.cs" />
     <Compile Remove="Migrations\20210727132927_SomeCoumnsd.Designer.cs" />
+    <Compile Remove="Migrations\20210823221516_BasketItemsColumnAddedIntiBasketItEMvIEWmODEL.cs" />
+    <Compile Remove="Migrations\20210823221516_BasketItemsColumnAddedIntiBasketItEMvIEWmODEL.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
