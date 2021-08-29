@@ -41,7 +41,7 @@ namespace neyeyim.Controllers
                 Place = _context.Places.Include(x => x.PlaceMenus).ThenInclude(x => x.MenuCategory).Include(x => x.PlaceTags).Include(x => x.PlaceComments).ThenInclude(x => x.AppUser).FirstOrDefault(x => x.Id == Id),
             };
 
-            if (DateTime.Now.Hour > placeDetailVM.Place.OpenTime.Hour && DateTime.Now.Hour < placeDetailVM.Place.CloseTime.Hour)
+            if (DateTime.Now.Hour > placeDetailVM?.Place?.OpenTime.Hour && DateTime.Now.Hour < placeDetailVM?.Place?.CloseTime.Hour)
             {
                 placeDetailVM.Place.Status = "Açıq";
             }
@@ -118,7 +118,7 @@ namespace neyeyim.Controllers
             //HttpContext.Response.Cookies.Append("name", "Burger");
 
             PlaceMenu placeMenu = _context.PlaceMenus.FirstOrDefault(x => x.Id == id);
-
+            var placeId = placeMenu?.PlaceId;
             if (placeMenu == null) return RedirectToAction("index", "home");
 
             List<BasketItemViewModel> basketItems = new List<BasketItemViewModel>();
@@ -157,7 +157,7 @@ namespace neyeyim.Controllers
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             }));
 
-            return RedirectToAction("index");
+            return RedirectToAction("Detail", new { id = placeId});
         }
 
         public IActionResult ShowBasket()
@@ -169,6 +169,21 @@ namespace neyeyim.Controllers
             List<BasketItemViewModel> placeMenu = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(placeMenuStr);
 
             return Ok(placeMenu);
+        }
+
+        public IActionResult RemoveBasket(int id)
+        {
+            var baskets = HttpContext.Request.Cookies["basket"];
+            var basketItems = JsonConvert.DeserializeObject<List<BasketItemViewModel>>(HttpContext.Request.Cookies["basket"]);
+
+            basketItems.Remove(basketItems.FirstOrDefault(x => x.Id == id));
+            
+            HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(basketItems, new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            }));
+
+            return RedirectToAction("index", "basket");
         }
     }
 }

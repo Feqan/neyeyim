@@ -448,7 +448,7 @@ namespace neyeyim.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orderz");
                 });
 
             modelBuilder.Entity("neyeyim.Models.OrderItem", b =>

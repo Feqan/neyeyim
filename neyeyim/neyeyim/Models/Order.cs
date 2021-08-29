@@ -1,6 +1,7 @@
 ﻿using neyeyim.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace neyeyim.Models
 {
     public class Order : BaseEntity
     {
+        //public int OrderItemId { get; set; }
+        //public OrderItem OrderItem { get; set; }
         public string AppUserId { get; set; }
         public string Address { get; set; }
         public string Name { get; set; }
@@ -22,4 +25,4 @@ namespace neyeyim.Models
         public AppUser AppUser { get; set; }
         public List<OrderItem> OrderItems { get; set; }
     }
-}
+}   

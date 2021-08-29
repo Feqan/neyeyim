@@ -24,14 +24,15 @@ namespace neyeyim.Areas.Manage.Controllers
         public IActionResult Index(int page = 1)
         {
             ViewBag.SelectedPage = page;
-            ViewBag.TotalPage = Math.Ceiling(_context.OrderItems.Count() / 3d);
-            var model = _context.Orders.Include(x => x.OrderItems).OrderByDescending(x => x.CreatedAt).Skip((page - 1) * 3).Take(3).ToList();
+            ViewBag.TotalPage = Math.Ceiling(_context.Orderz.Count() / 3d);
+
+            var model = _context.Orderz.Include(x => x.OrderItems).OrderByDescending(x => x.CreatedAt).Skip((page - 1) * 3).Take(3).ToList();
             return View(model);
         }
 
         public IActionResult Detail(int id)
         {
-            Order order = _context.Orders.Include(x => x.OrderItems).FirstOrDefault(x => x.Id == id);
+            Order order = _context.Orderz.Include(x => x.OrderItems).FirstOrDefault(x => x.Id == id);
             if (order == null)
             {
                 return RedirectToAction("index");
@@ -43,7 +44,7 @@ namespace neyeyim.Areas.Manage.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ChangeStatus(int id, OrderStatus status)
         {
-            Order order = _context.Orders.FirstOrDefault(x => x.Id == id);
+            Order order = _context.Orderz.FirstOrDefault(x => x.Id == id);
             if (order == null)
             {
                 return RedirectToAction("index");
